@@ -2,7 +2,7 @@
 <plugin_manifest>
 	<field key="author" value="Curverider" />
 	<field key="version" value="1.0" />
-	<field key="description" value="Document browser plugin - upload, browse, search & manage .doc .pdf .xls .ppt .xdoc .txt etc" />
+	<field key="description" value="Document browser plugin - upload, browse, search and manage .doc .pdf .xls .ppt .xdoc .txt etc" />
 	<field key="website" value="http://www.elgg.org/" />
 	<field key="copyright" value="(C) Curverider 2010" />
 	<field key="licence" value="GNU Public License version 2" />
