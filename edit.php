@@ -36,9 +36,8 @@ if ($file = get_entity($file)) {
 		$area2 = elgg_view_title($title = elgg_echo('document:edit'));
 		$area2 .= elgg_view("document/forms/edit",array('entity' => $file));
 		$file_acl = get_readable_access_level($file->access_id);
-		$area3 = elgg_view('blog/ownerblock', array('entity' => $file, 'context' => 'edit'));
 		//display the more options sidebar
-	 	$area3 .= elgg_view('document/edit_options', array('file_acl' => $file_acl, 'entity' => $file));
+	 	$area3 = elgg_view('document/edit_options', array('file_acl' => $file_acl, 'entity' => $file));
 		$body = elgg_view_layout('documents_edit', $area1.$area2, $area3);
 		page_draw(elgg_echo("document:upload"), $body);
 	}
