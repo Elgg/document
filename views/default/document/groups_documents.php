@@ -17,8 +17,8 @@ $('a.show_file_desc').click(function () {
 });
 </script>
 
-<div id="filerepo_widget_layout"> 
-<h3 class="hello groups"><?php echo elgg_echo("document:group"); ?></h3>
+<div class="group_tool_widget"> 
+<h3><?php echo elgg_echo("document:group"); ?></h3>
 
 <?php
 

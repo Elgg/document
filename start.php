@@ -36,7 +36,7 @@ function document_init(){
 	elgg_extend_view('css', 'document/css');
 	
 	// Extend Groups profile page	
-	elgg_extend_view('groups/left_column','document/groups_documents');
+	elgg_extend_view('groups/tool_latest','document/groups_documents');
 	
 	// Register a page handler, so we can have nice URLs
 	register_page_handler('document','document_page_handler');
