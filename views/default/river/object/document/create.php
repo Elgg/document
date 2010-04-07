@@ -8,7 +8,8 @@ $title = $object->title;
 if(!$title)
  $title = 'an untitled document';
 
-$string = "<div class='river_content_title'>" . sprintf(elgg_echo("document:river:created"),$url) . " <a href=\"{$object->getURL()}\">" . $title . "</a> <span class='river_item_time'>" . friendly_time($object->time_updated) . "</span></div>";
+$string = sprintf(elgg_echo("document:river:created"),$url) . " <a href=\"{$object->getURL()}\">" . $title . "</a> <span class='entity_subtext'>" . friendly_time($object->time_updated) . "</span> <a class='river_comment_form_button link'>Comment</a>";
+$string .= elgg_view('likes/forms/link', array('entity' => $object));
 
 //show the Document type icon with title
 $filetype = get_general_file_type($object->mimetype);
