@@ -27,10 +27,8 @@ function document_init(){
 	global $CONFIG;
 	$page_owner = page_owner_entity();
 			
-	// Set up menu for logged in users
-	if (isloggedin()){
-		add_menu(elgg_echo('documents'), $CONFIG->wwwroot . 'mod/document/all.php');
-	}
+	// Set up menu
+	add_menu(elgg_echo('documents'), $CONFIG->wwwroot . 'mod/document/all.php');
 			
 	// Extend CSS
 	elgg_extend_view('css', 'document/css');
