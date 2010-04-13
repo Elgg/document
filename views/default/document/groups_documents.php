@@ -8,7 +8,7 @@ if($vars['entity']->documents_enable != 'no'){
 
 <script type="text/javascript">
 $(document).ready(function () {
-
+// @todo - check this
 $('a.show_file_desc').click(function () {
 	$(this.parentNode).children("[class=filerepo_listview_desc]").slideToggle("fast");
 	return false;
@@ -17,7 +17,7 @@ $('a.show_file_desc').click(function () {
 });
 </script>
 
-<div class="group_tool_widget"> 
+<div class="group_tool_widget documents"> 
 <h3><?php echo elgg_echo("document:group"); ?></h3>
 
 <?php
@@ -25,7 +25,7 @@ $('a.show_file_desc').click(function () {
 	//the number of Documents to display
 	$number = (int) $vars['entity']->num_display;
 	if (!$number)
-		$number = 10;
+		$number = 6;
 	
 	//get the user's Documents
 	$files = get_user_objects($vars['entity']->guid, "document", $number, 0);
@@ -37,11 +37,11 @@ $('a.show_file_desc').click(function () {
             foreach($files as $f){
             	
                 $mime = $f->mimetype;
-                echo "<div class=''>";
-            	echo "<div class=''><a href=\"{$f->getURL()}\">" . elgg_view("document/icon", array("mimetype" => $mime, 'thumbnail' => $f->thumbnail, 'file_guid' => $f->guid)) . "</a></div>";
-            	echo "<div class=''>";
-            	echo "<div class=''><p class=''>" . $f->title . "</p></div>";
-            	echo "<div class=''><p class=''>" . friendly_time($f->time_created) . "</p></div>";
+                echo "<div class='entity_listing clearfloat'>";
+            	echo "<div class='entity_listing_icon'><a href=\"{$f->getURL()}\">" . elgg_view("document/icon", array("mimetype" => $mime, 'thumbnail' => $f->thumbnail, 'file_guid' => $f->guid)) . "</a></div>";
+            	echo "<div class='entity_listing_info'>";
+            	echo "<p class='entity_title'>" . $f->title . "</p>";
+            	echo "<p class='entity_subtext'>" . friendly_time($f->time_created) . "</p>";
 		        $description = $f->description;
 		        if (!empty($description)) echo "<a href=\"javascript:void(0);\" class=\"show_file_desc\">". elgg_echo('more') ."</a><br /><div class=\"filerepo_listview_desc\">" . $description . "</div>";
 		        echo "</div></div>";
