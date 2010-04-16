@@ -5,18 +5,6 @@
 if($vars['entity']->documents_enable != 'no'){
 
 ?>
-
-<script type="text/javascript">
-$(document).ready(function () {
-// @todo - check this
-$('a.show_file_desc').click(function () {
-	$(this.parentNode).children("[class=filerepo_listview_desc]").slideToggle("fast");
-	return false;
-});
-
-});
-</script>
-
 <div class="group_tool_widget documents"> 
 <h3><?php echo elgg_echo("document:group"); ?></h3>
 
@@ -42,8 +30,6 @@ $('a.show_file_desc').click(function () {
             	echo "<div class='entity_listing_info'>";
             	echo "<p class='entity_title'>" . $f->title . "</p>";
             	echo "<p class='entity_subtext'>" . friendly_time($f->time_created) . "</p>";
-		        $description = $f->description;
-		        if (!empty($description)) echo "<a href=\"javascript:void(0);\" class=\"show_file_desc\">". elgg_echo('more') ."</a><br /><div class=\"filerepo_listview_desc\">" . $description . "</div>";
 		        echo "</div></div>";
             				
         	}
