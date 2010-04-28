@@ -59,7 +59,7 @@ if (get_context() == "search") {
 		// view for plugins to extend
 		echo elgg_view("documents/options",array('entity' => $file));
 	?>
-	<div class="content_header_title"><h2><?php echo $pagetitle; ?></h2></div>
+	<div class="content_header_title"><?php echo $pagetitle; ?></div>
 	</div>
 				
 	<div class="entity_listing document singleview clearfloat">

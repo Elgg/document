@@ -38,6 +38,9 @@
 }
 
 /* document display - single entity page */
+.document_header .content_header_title h2 {
+	margin-top:4px;
+}
 .document_details {
 	margin-top: 10px;
 	margin-bottom: 20px;
