@@ -39,6 +39,9 @@ if($filter && $filter != 'all'){
 	set_context('document');
 }
 
+// include stats
+$area3 .= elgg_view("document/document_stats");
+
 // include a view for plugins to extend
 $area3 .= elgg_view("documents/sidebar", array("object_type" => 'document'));
 
@@ -46,8 +49,8 @@ $area3 .= elgg_view("documents/sidebar", array("object_type" => 'document'));
 $comments = get_annotations(0, "object", "document", "generic_comment", "", 0, 4, 0, "desc");
 $area3 .= elgg_view('annotation/latest_comments', array('comments' => $comments));
 
-// include stats
-$area3 .= elgg_view("document/document_stats");
+// tag-cloud display
+$area3 .= display_tagcloud(0, 50, 'tags');
 	
 $body = elgg_view_layout('one_column_with_sidebar', $area1.$area2, $area3);
 

@@ -38,6 +38,9 @@ if ($file = get_entity($guid)) {
 } else {	
 	$area2 = elgg_echo('notfound');		
 }
+
+// tag-cloud display
+$area3 = display_tagcloud(0, 50, 'tags');
 		
 $body = elgg_view_layout('one_column_with_sidebar',$area1.$area2, $area3);
 page_draw(sprintf(elgg_echo("document:user"),page_owner_entity()->name), $body);
