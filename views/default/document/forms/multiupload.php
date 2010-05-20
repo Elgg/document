@@ -2,7 +2,7 @@
 	/**
 	 * Elgg Document browser uploader
 	 */
-var_dump($vars['container_guid']);
+
 	global $CONFIG;
 
 	$title = elgg_echo("blog:addpost");
