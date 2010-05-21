@@ -55,6 +55,8 @@ function document_init(){
 	// Register entity type
 	register_entity_type('object','document');
 
+	// Register profile menu hook
+	register_plugin_hook('profile_menu', 'profile', 'document_profile_menu');
 }
 
 /**
@@ -267,6 +269,17 @@ function document_url($entity) {
 	$title = friendly_title($title);
 	return $CONFIG->url . "pg/document/" . $entity->getOwnerEntity()->username . "/read/" . $entity->getGUID() . "/" . $title;
 
+}
+
+function document_profile_menu($hook, $entity_type, $return_value, $params) {
+	global $CONFIG;
+	
+	$return_value[] = array(
+		'text' => elgg_echo('document'),
+		'href' => "{$CONFIG->url}pg/document/{$params['owner']->username}",
+	);
+	
+	return $return_value;
 }
 
 
