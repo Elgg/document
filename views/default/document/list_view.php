@@ -40,7 +40,7 @@ if ($file) {
 	}
 		
 	// metadata block, - access level, edit, delete, + options view extender
-	$info = "<div class='entity_metadata'><span class='access_level'>" . $object_acl . "</span>";
+	$info = "<div class='entity_metadata'><span {$access_level}>" . $object_acl . "</span>";
 
 	// view for plugins to extend	
 	$info .= elgg_view('documents/options', array('entity' => $file));
