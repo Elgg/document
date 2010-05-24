@@ -17,6 +17,27 @@ if ($file) {
 	$mime = $file->mimetype;
 	//sort out the access level for display
 	$object_acl = get_readable_access_level($file->access_id);
+	//files with these access level don't need an icon
+	$general_access = array('Public', 'Logged in users', 'Friends');
+	//set the right class for access level display - need it to set on groups and shared access only
+	$is_group = get_entity($file->container_guid);
+	if($is_group instanceof ElggGroup){
+		//get the membership type open/closed
+		$membership = $is_group->membership;
+		//we decided to show that the item is in a group, rather than its actual access level
+		$object_acl = "Group: " . $is_group->name;
+		if($membership == 2)
+			$access_level = "class='access_level group_open'";
+		else
+			$access_level = "class='access_level group_closed'";
+	}elseif($object_acl == 'Private'){
+		$access_level = "class='access_level private'";
+	}else{
+		if(!in_array($object_acl, $general_access))
+			$access_level = "class='access_level shared_collection'";
+		else
+			$access_level = "class='access_level entity_access'";
+	}
 		
 	// metadata block, - access level, edit, delete, + options view extender
 	$info = "<div class='entity_metadata'><span class='access_level'>" . $object_acl . "</span>";
