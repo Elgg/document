@@ -63,6 +63,7 @@ function document_init(){
  * Sets up submenus for the Documents.  Triggered on pagesetup.
  *
  */
+/*
 function document_submenus() {
 
 	global $CONFIG;
@@ -76,6 +77,7 @@ function document_submenus() {
 		}
 	}
 }
+*/
 
 /**
  * Document page handler
@@ -285,7 +287,7 @@ function document_profile_menu($hook, $entity_type, $return_value, $params) {
 
 // Make sure test_init is called on initialisation
 register_elgg_event_handler('init','system','document_init');
-register_elgg_event_handler('pagesetup','system','document_submenus');
+//register_elgg_event_handler('pagesetup','system','document_submenus');
 
 // Register actions
 register_action("document/upload", false, $CONFIG->pluginspath . "document/actions/upload.php");
