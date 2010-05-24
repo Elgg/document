@@ -3,7 +3,7 @@
 * Elgg Document delete
 */
 
-$guid = (int) get_input('document');
+$guid = (int) get_input('file');
 if ($file = get_entity($guid)) {
 	$container = get_entity($file->container_guid);
 	if ($file->canEdit()) {
