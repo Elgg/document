@@ -32,7 +32,7 @@ if($vars['entity']->documents_enable != 'no'){
 				echo "<div class='entity_listing clearfloat'>";
 				echo "<div class='entity_listing_icon'><a href=\"{$f->getURL()}\">" . elgg_view("document/icon", array("mimetype" => $mime, 'thumbnail' => $f->thumbnail, 'file_guid' => $f->guid)) . "</a></div>";
 				echo "<div class='entity_listing_info'>";
-				echo "<p class='entity_title'>" . $f->title . "</p>";
+				echo "<p class='entity_title'><a href=\"{$f->getURL()}\">" . $f->title . "</a></p>";
 				echo "<p class='entity_subtext'>" . friendly_time($f->time_created) . "</p>";
 				echo "</div></div>";
 

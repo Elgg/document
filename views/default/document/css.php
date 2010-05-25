@@ -103,3 +103,11 @@
 .more_upload_details {
 	margin-left:20px;
 }
+
+/* group docs widget */
+.group_tool_widget.documents .entity_listing_icon img {
+	width:25px;
+}
+
+
+
