@@ -43,8 +43,9 @@ function document_init(){
 	register_entity_url_handler('document_url','object','document');
 
 	// Register granular notification for this type
-	if (is_callable('register_notification_object'))
+	if (is_callable('register_notification_object')) {
 		register_notification_object('object', 'document', elgg_echo('document:newupload'));
+	}
 
 	// Listen to notification events and supply a more useful message
 	register_plugin_hook('notify:entity:message', 'object', 'document_notify_message');
@@ -117,37 +118,37 @@ function document_page_handler($page) {
 }
 
 /**
-	 * Returns a more meaningful message
-	 *
-	 * @param unknown_type $hook
-	 * @param unknown_type $entity_type
-	 * @param unknown_type $returnvalue
-	 * @param unknown_type $params
+ * Returns a more meaningful message
+ *
+ * @param unknown_type $hook
+ * @param unknown_type $entity_type
+ * @param unknown_type $returnvalue
+ * @param unknown_type $params
 */
-	function document_notify_message($hook, $entity_type, $returnvalue, $params){
-		$entity = $params['entity'];
-		$to_entity = $params['to_entity'];
-		$method = $params['method'];
-		if (($entity instanceof ElggEntity) && ($entity->getSubtype() == 'document')){
-			$descr = $entity->description;
-			$title = $entity->title;
-			global $CONFIG;
-			$url = $CONFIG->wwwroot . "pg/view/" . $entity->guid;
-			if ($method == 'sms') {
-				$owner = $entity->getOwnerEntity();
-				return $owner->username . ' ' . elgg_echo("document:via") . ': ' . $url . ' (' . $title . ')';
-			}
-			if ($method == 'email') {
-				$owner = $entity->getOwnerEntity();
-				return $owner->username . ' ' . elgg_echo("document:via") . ': ' . $entity->title . "\n\n" . $descr . "\n\n" . $entity->getURL();
-			}
-			if ($method == 'web') {
-				$owner = $entity->getOwnerEntity();
-				return $owner->username . ' ' . elgg_echo("document:via") . ': ' . $entity->title . "\n\n" . $descr . "\n\n" . $entity->getURL();
-			}
+function document_notify_message($hook, $entity_type, $returnvalue, $params){
+	$entity = $params['entity'];
+	$to_entity = $params['to_entity'];
+	$method = $params['method'];
+	if (($entity instanceof ElggEntity) && ($entity->getSubtype() == 'document')){
+		$descr = $entity->description;
+		$title = $entity->title;
+		global $CONFIG;
+		$url = $CONFIG->wwwroot . "pg/view/" . $entity->guid;
+		if ($method == 'sms') {
+			$owner = $entity->getOwnerEntity();
+			return $owner->username . ' ' . elgg_echo("document:via") . ': ' . $url . ' (' . $title . ')';
 		}
-		return null;
+		if ($method == 'email') {
+			$owner = $entity->getOwnerEntity();
+			return $owner->username . ' ' . elgg_echo("document:via") . ': ' . $entity->title . "\n\n" . $descr . "\n\n" . $entity->getURL();
+		}
+		if ($method == 'web') {
+			$owner = $entity->getOwnerEntity();
+			return $owner->username . ' ' . elgg_echo("document:via") . ': ' . $entity->title . "\n\n" . $descr . "\n\n" . $entity->getURL();
+		}
 	}
+	return null;
+}
 
 
 /**
@@ -179,29 +180,37 @@ function get_general_file_type($mimetype) {
 									break;
 	}
 
-	if (substr_count($mimetype,'text/'))
+	if (substr_count($mimetype,'text/')) {
 		return "text";
+	}
 
-	if (substr_count($mimetype,'audio/'))
+	if (substr_count($mimetype,'audio/')) {
 		return "audio";
+	}
 
-	if (substr_count($mimetype,'image/'))
+	if (substr_count($mimetype,'image/')) {
 		return "image";
+	}
 
-	if (substr_count($mimetype,'video/'))
+	if (substr_count($mimetype,'video/')) {
 		return "video";
+	}
 
-	if (substr_count($mimetype,'application/vnd.openxmlformats-officedocument.'))
+	if (substr_count($mimetype,'application/vnd.openxmlformats-officedocument.')) {
 		return "openoffice";
+	}
 
-	if (substr_count($mimetype,'application/octet-stream'))
+	if (substr_count($mimetype,'application/octet-stream')) {
 		return "exe";
+	}
 
-	if (substr_count($mimetype,'zip'))
+	if (substr_count($mimetype,'zip')) {
 		return "zip";
+	}
 
-	if (substr_count($mimetype,'application/'))
+	if (substr_count($mimetype,'application/')) {
 		return "application";
+	}
 
 	return "general";
 
@@ -212,11 +221,10 @@ function get_general_file_type($mimetype) {
  *
  * @return array The overall type
  */
-
 function file_categories() {
-		global $CONFIG;
-		$file_cats = array("all", "document", "pdf", "excel", "ppt", "text", "application", "general");
-		return $file_cats;
+	global $CONFIG;
+	$file_cats = array("all", "document", "pdf", "excel", "ppt", "text", "application", "general");
+	return $file_cats;
 }
 
 /**
@@ -224,12 +232,11 @@ function file_categories() {
  *
  * @return array The overall type
  **/
-
 function users_filter() {
-		global $CONFIG;
-		$user = $_SESSION['user']->guid; //this filter is for the logged in user
-		$user_filter = elgg_get_entities_from_relationship(array('relationship' => 'member', 'relationship_guid' => $user, 'inverse_relationship' => FALSE, 'types' => 'group', 'owner_guid' => 0, 'limit' => 100, 'offset' => 0, 'count' => FALSE, 'site_guid' => 0));
-		return $user_filter;
+	global $CONFIG;
+	$user = $_SESSION['user']->guid; //this filter is for the logged in user
+	$user_filter = elgg_get_entities_from_relationship(array('relationship' => 'member', 'relationship_guid' => $user, 'inverse_relationship' => FALSE, 'types' => 'group', 'owner_guid' => 0, 'limit' => 100, 'offset' => 0, 'count' => FALSE, 'site_guid' => 0));
+	return $user_filter;
 }
 
 
@@ -265,22 +272,21 @@ function get_filetype_cloud($owner_guid = "", $friends = false) {
  * @return string Document URL
  */
 function document_url($entity) {
-
 	global $CONFIG;
+
 	$title = $entity->title;
 	$title = friendly_title($title);
 	return $CONFIG->url . "pg/document/" . $entity->getOwnerEntity()->username . "/read/" . $entity->getGUID() . "/" . $title;
-
 }
 
 function document_profile_menu($hook, $entity_type, $return_value, $params) {
 	global $CONFIG;
-	
+
 	$return_value[] = array(
 		'text' => elgg_echo('document'),
 		'href' => "{$CONFIG->url}pg/document/{$params['owner']->username}",
 	);
-	
+
 	return $return_value;
 }
 
@@ -295,5 +301,3 @@ register_action("document/save", false, $CONFIG->pluginspath . "document/actions
 register_action("document/download", true, $CONFIG->pluginspath. "document/actions/download.php");
 register_action("document/icon", true, $CONFIG->pluginspath. "document/actions/icon.php");
 register_action("document/delete", false, $CONFIG->pluginspath. "document/actions/delete.php");
-
-?>
