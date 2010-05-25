@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin_manifest>
+	<field key="name" value="Documents" />
 	<field key="author" value="Curverider" />
 	<field key="version" value="1.0" />
 	<field key="description" value="Document browser plugin - upload, browse, search and manage .doc .pdf .xls .ppt .xdoc .txt etc" />
