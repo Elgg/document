@@ -14,10 +14,10 @@ if(isloggedin()) {
 }
 		
 //display the filter
-	$area2 .= elgg_view('document/main_filter', array('context' => "friends"));
+//$area2 .= elgg_view('document/main_filter', array('context' => "friends"));
 	
 set_context('search');
-$area2 .= "<div id='documents_list'>" . list_user_friends_objects(page_owner(), 'file', 10,false, false, true) . "</div>";
+$area2 .= "<div id='documents_list'>" . list_user_friends_objects(page_owner(), 'document', 10,false, false, true) . "</div>";
 set_context('document');
 	
 // view for plugins to extend
