@@ -184,28 +184,16 @@ function get_general_file_type($mimetype) {
 		return "text";
 	}
 
-	if (substr_count($mimetype,'audio/')) {
-		return "audio";
-	}
-
-	if (substr_count($mimetype,'image/')) {
-		return "image";
-	}
-
-	if (substr_count($mimetype,'video/')) {
-		return "video";
-	}
-
 	if (substr_count($mimetype,'application/vnd.openxmlformats-officedocument.')) {
 		return "openoffice";
 	}
-
-	if (substr_count($mimetype,'application/octet-stream')) {
-		return "exe";
+	
+	if (substr_count($mimetype,'application/vnd.oasis.opendocument.')) {
+		return "ppt";
 	}
 
-	if (substr_count($mimetype,'zip')) {
-		return "zip";
+	if (substr_count($mimetype,'application/octet-stream')) {
+		return "general";
 	}
 
 	if (substr_count($mimetype,'application/')) {
