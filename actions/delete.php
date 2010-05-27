@@ -4,7 +4,7 @@
 */
 
 $guid = (int) get_input('file');
-if ($file = get_entity($guid)) {
+if ($file = new DocumentPluginDoc($guid)) {
 	$container = get_entity($file->container_guid);
 	if ($file->canEdit()) {
 		

@@ -13,7 +13,7 @@
 	
 	$guid = (int) get_input('file_guid');
 	
-	if (!$file = get_entity($guid)) {
+	if (!$file = new DocumentPluginDoc($guid)) {
 		register_error(elgg_echo("document:uploadfailed"));
 		forward($CONFIG->wwwroot . "pg/document/" . $_SESSION['user']->username);
 		exit;

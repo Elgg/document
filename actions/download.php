@@ -7,7 +7,7 @@
 $file_guid = get_input("file_guid");
 
 // Get the Document
-$file = get_entity($file_guid);
+$file = new DocumentPluginDoc($file_guid);
 
 if ($file){
 	$mime = $file->getMimeType();
