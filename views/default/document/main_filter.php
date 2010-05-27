@@ -20,13 +20,22 @@ if($page_owner == $_SESSION['user']) {
 	$file_cat = file_categories();
 	//get those Document categories with actual Documents
 	if($correct_context != 'everyone') {
-		$types = get_tags(0,10,'simpletype','object','document',$page_owner->guid);
-		// @todo figure out why when updating to new function - filter stops working
-		//$types = elgg_get_tags(array('threshold' => 0, 'limit' => 10, 'tag_names' => 'simpletype', 'types' => 'object', 'subtypes' => 'document', 'container_guids' => $page_owner->guid));
+		$types = elgg_get_tags(array(
+			'threshold' => 0,
+			'limit' => 10,
+			'tag_names' => array('simpletype'),
+			'type' => 'object',
+			'subtype' => 'document',
+			'container_guids' => $page_owner->guid
+		));
 	} else {
-		$types = get_tags(0,10,'simpletype','object','document');
-		// @todo figure out why when updating to new function - filter stops working
-		//$types = elgg_get_tags(array('threshold' => 0, 'limit' => 10, 'tag_names' => 'simpletype', 'types' => 'object', 'subtypes' => 'document'));
+		$types = elgg_get_tags(array(
+			'threshold' => 0,
+			'limit' => 10,
+			'tag_names' => array('simpletype'),
+			'type' => 'object',
+			'subtype' => 'document'
+		));
 	}
 	//set some variables
 	$selected = get_input('filter');

@@ -58,6 +58,8 @@ function document_init(){
 
 	// Register profile menu hook
 	register_plugin_hook('profile_menu', 'profile', 'document_profile_menu');
+	
+	elgg_register_tag_metadata_name('simpletype');
 }
 
 /**
@@ -249,7 +251,20 @@ function get_filetype_cloud($owner_guid = "", $friends = false) {
 	} else {
 		$friendofguid = false;
 	}
-	return elgg_view('document/typecloud',array('owner_guid' => $owner_guid, 'friend_guid' => $friendofguid, 'types' => elgg_get_tags(array('threshold' => 0, 'limit' => 10, 'tag_names' => 'simpletype', 'types' => 'object', 'subtypes' => 'document', 'owner_guids' => $owner_guid)) ));
+	
+	$types = elgg_get_tags(array(
+		'threshold' => 0,
+		'limit' => 10,
+		'tag_names' => array('simpletype'),
+		'type' => 'object',
+		'subtype' => 'document',
+		'owner_guids' => $owner_guid
+	));
+	return elgg_view('document/typecloud', array(
+		'owner_guid' => $owner_guid,
+		'friend_guid' => $friendofguid,
+		'types' => $types
+	));
 
 }
 
