@@ -16,6 +16,7 @@ $english = array(
 'document:user' => "%s's documents",
 'document:friends' => "Friends' documents",
 'document:all' => "All site documents",
+'document:ingroup' => "in the group",
 'document:sharedaccess' => "Shared Access documents",
 'document:edit' => "Edit document",
 'document:more' => "More documents",
