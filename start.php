@@ -23,23 +23,21 @@ class DocumentPluginDoc extends ElggFile{
  * Document plugin initialisation functions.
  */
 function document_init(){
-	// Get config
 	global $CONFIG;
+
 	$page_owner = page_owner_entity();
 
-	// Set up menu
 	add_menu(elgg_echo('documents'), $CONFIG->wwwroot . 'mod/document/all.php');
-
-	// Extend CSS
 	elgg_extend_view('css', 'document/css');
 
-	// Extend Groups profile page
-	elgg_extend_view('groups/tool_latest','document/groups_documents');
+	// add group profile and tool entries
+	elgg_extend_view('groups/tool_latest', 'document/groups_documents');
+	add_group_tool_option('documents', elgg_echo('groups:enabledocuments'), true);
 
-	// Register a page handler, so we can have nice URLs
+	// Add to profile menu
+	register_plugin_hook('profile_menu', 'profile', 'document_profile_menu');
+
 	register_page_handler('document','document_page_handler');
-
-	// Register a URL handler for Documents
 	register_entity_url_handler('document_url','object','document');
 
 	// Register granular notification for this type
@@ -50,14 +48,12 @@ function document_init(){
 	// Listen to notification events and supply a more useful message
 	register_plugin_hook('notify:entity:message', 'object', 'document_notify_message');
 
-	// add the group Documents tool option
-	add_group_tool_option('documents',elgg_echo('groups:enabledocuments'),true);
-
-	// Register entity type
+	// register type for search.
 	register_entity_type('object','document');
 
-	// Register profile menu hook
-	register_plugin_hook('profile_menu', 'profile', 'document_profile_menu');
+	// expose documents for embed plugin
+	register_plugin_hook('embed_get_sections', 'all', 'document_embed_get_sections');
+	register_plugin_hook('embed_get_items', 'document', 'document_embed_get_items');
 	
 	elgg_register_tag_metadata_name('simpletype');
 }
@@ -291,6 +287,52 @@ function document_profile_menu($hook, $entity_type, $return_value, $params) {
 	);
 
 	return $return_value;
+}
+
+/**
+ * Register documents as an embed type.
+ *
+ * @param unknown_type $hook
+ * @param unknown_type $type
+ * @param unknown_type $value
+ * @param unknown_type $params
+ */
+function document_embed_get_sections($hook, $type, $value, $params) {
+	$params['document'] = array(
+		'name' => elgg_echo('document:documents'),
+		'layout' => 'list',
+	);
+
+	return $params;
+}
+
+/**
+ * Return a list of documents for embedding
+ *
+ * @param unknown_type $hook
+ * @param unknown_type $type
+ * @param unknown_type $value
+ * @param unknown_type $params
+ */
+function document_embed_get_items($hook, $type, $value, $params) {
+	$options = array(
+		'owner_guid' => get_loggedin_userid(),
+		'type_subtype_pair' => array('object' => 'document'),
+		'count' => TRUE
+	);
+
+	$count = elgg_get_entities($options);
+	$value['count'] += $count;
+
+	unset($options['count']);
+	$options['offset'] = $params['offset'];
+	$options['limit'] = $params['limit'];
+
+	$items = elgg_get_entities($options);
+
+	$value['items'] = array_merge($items, $value['items']);
+
+	return $value;
 }
 
 
