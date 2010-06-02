@@ -54,7 +54,7 @@ function document_init(){
 	// expose documents for embed plugin
 	register_plugin_hook('embed_get_sections', 'all', 'document_embed_get_sections');
 	register_plugin_hook('embed_get_items', 'document', 'document_embed_get_items');
-	
+
 	elgg_register_tag_metadata_name('simpletype');
 }
 
@@ -185,7 +185,7 @@ function get_general_file_type($mimetype) {
 	if (substr_count($mimetype,'application/vnd.openxmlformats-officedocument.')) {
 		return "openoffice";
 	}
-	
+
 	if (substr_count($mimetype,'application/vnd.oasis.opendocument.')) {
 		return "ppt";
 	}
@@ -247,7 +247,7 @@ function get_filetype_cloud($owner_guid = "", $friends = false) {
 	} else {
 		$friendofguid = false;
 	}
-	
+
 	$types = elgg_get_tags(array(
 		'threshold' => 0,
 		'limit' => 10,
@@ -298,12 +298,12 @@ function document_profile_menu($hook, $entity_type, $return_value, $params) {
  * @param unknown_type $params
  */
 function document_embed_get_sections($hook, $type, $value, $params) {
-	$params['document'] = array(
-		'name' => elgg_echo('document:documents'),
+	$value['document'] = array(
+		'name' => elgg_echo('documents'),
 		'layout' => 'list',
 	);
 
-	return $params;
+	return $value;
 }
 
 /**
