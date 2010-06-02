@@ -40,7 +40,7 @@ if ($file = get_entity($guid)) {
 }
 
 // tag-cloud display
-$area3 = display_tagcloud(0, 50, 'tags');
+$area3 = display_tagcloud(0, 50, 'tags', 'object', 'document', $page_owner->getGUID());
 		
 $body = elgg_view_layout('one_column_with_sidebar',$area1.$area2, $area3);
 page_draw(sprintf(elgg_echo("document:user"),page_owner_entity()->name), $body);

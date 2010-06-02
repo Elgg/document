@@ -50,7 +50,7 @@ $comments = get_annotations(0, "object", "document", "generic_comment", "", 0, 4
 $area3 .= elgg_view('annotation/latest_comments', array('comments' => $comments));
 
 // tag-cloud display
-$area3 .= display_tagcloud(0, 50, 'tags');
+$area3 .= display_tagcloud(0, 50, 'tags', 'object', 'document');
 	
 $body = elgg_view_layout('one_column_with_sidebar', $area1.$area2, $area3);
 
