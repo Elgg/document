@@ -341,7 +341,7 @@ function document_embed_get_items($hook, $type, $value, $params) {
  * @param ElggEntity $entity
  * @param string $size Not used yet.
  */
-function videolist_get_entity_icon_url(ElggEntity $entity, $size = 'medium') {
+function document_get_entity_icon_url(ElggEntity $entity, $size = 'medium') {
 	return $entity->thumbnail;
 }
 
