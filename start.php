@@ -335,6 +335,15 @@ function document_embed_get_items($hook, $type, $value, $params) {
 	return $value;
 }
 
+/**
+ * Returns the URL of the icon for $entity at $size.
+ *
+ * @param ElggEntity $entity
+ * @param string $size Not used yet.
+ */
+function videolist_get_entity_icon_url(ElggEntity $entity, $size = 'medium') {
+	return $entity->thumbnail;
+}
 
 // Make sure test_init is called on initialisation
 register_elgg_event_handler('init','system','document_init');
@@ -344,5 +353,4 @@ register_elgg_event_handler('init','system','document_init');
 register_action("document/upload", false, $CONFIG->pluginspath . "document/actions/upload.php");
 register_action("document/save", false, $CONFIG->pluginspath . "document/actions/save.php");
 register_action("document/download", true, $CONFIG->pluginspath. "document/actions/download.php");
-register_action("document/icon", true, $CONFIG->pluginspath. "document/actions/icon.php");
 register_action("document/delete", false, $CONFIG->pluginspath. "document/actions/delete.php");
