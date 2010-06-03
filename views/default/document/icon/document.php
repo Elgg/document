@@ -1,10 +1,9 @@
 <?php
 
-	if ($vars['size'] == 'large') {
-		$ext = '_lrg';
-	} else {
-		$ext = '';
-	}
-	echo "<img src=\"{$CONFIG->wwwroot}mod/document/graphics/icons/text{$ext}.gif\" border=\"0\" />";
+if ($vars['size'] == 'large') {
+	$ext = '_lrg';
+} else {
+	$ext = '';
+}
 
-?>
+echo "{$CONFIG->wwwroot}mod/document/graphics/icons/text{$ext}.gif";

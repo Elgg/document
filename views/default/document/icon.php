@@ -1,30 +1,25 @@
 <?php
-	/**
-	 * Elgg Document icons.
-	 * Displays an icon, depending on its mime type, for a Document. 
-	 * Optionally you can specify a size.
-	 */
+/**
+ * Elgg Document icons.
+ * Displays an icon, depending on its mime type, for a Document.
+ * Optionally you can specify a size.
+ *
+ * Most of these variables don't seem to be used, but are available.
+ * @uses string $vars['size'] -
+ * @uses string $vars['mimetype']
+ * @uses string $vars['thumbnail'] The url to a thumbnail image?
+ * @uses string $vars['file_guid']
+ */
 
-	global $CONFIG;
-	
-	$mime = $vars['mimetype'];
-	if (isset($vars['thumbnail'])) {
-		$thumbnail = $vars['thumbnail'];
-	} else {
-		$thumbnail = false;
-	}
-	
-	$size = $vars['size'];
-	if ($size != 'large') {
-		$size = 'small';
-	}
+global $CONFIG;
 
-	if (!empty($mime) && elgg_view_exists("document/icon/{$mime}")) {
-		echo elgg_view("document/icon/{$mime}", $vars);
-	} else if (!empty($mime) && elgg_view_exists("document/icon/" . substr($mime,0,strpos($mime,'/')) . "/default")) {
-		echo elgg_view("document/icon/" . substr($mime,0,strpos($mime,'/')) . "/default", $vars);
-	} else {
-		echo "<img src=\"". elgg_view('document/icon/default',$vars) ."\" border=\"0\" />";
-	} 
+$size = $vars['size'];
+if ($size != 'large') {
+	$size = 'small';
+}
 
-?>
+$entity = get_entity($vars['file_guid']);
+
+$img_url = $entity->getIcon($size);
+
+echo "<img src=\"$img_url\" border=\"0\" />";

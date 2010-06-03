@@ -338,11 +338,41 @@ function document_embed_get_items($hook, $type, $value, $params) {
 /**
  * Returns the URL of the icon for $entity at $size.
  *
+ * @todo All of document's icon stuff is overly complicated and doesn't
+ * quite work right. It needs to be re-written.
+ *
  * @param ElggEntity $entity
  * @param string $size Not used yet.
  */
 function document_get_entity_icon_url(ElggEntity $entity, $size = 'medium') {
-	return $entity->thumbnail;
+	global $CONFIG;
+
+	// @todo Why are we doing this?
+	if ($size != 'large') {
+		$size = 'small';
+	}
+
+	$mime = $entity->mimetype;
+
+	$vars = array(
+		'size' => $size,
+		'entity' => $entity,
+		'mime' => $mime
+	);
+
+	$url = '';
+
+	if ($mime && elgg_view_exists("document/icon/{$mime}")) {
+		$url = elgg_view("document/icon/{$mime}", $vars);
+	} else if ($mime && elgg_view_exists("document/icon/" . substr($mime, 0, strpos($mime,'/')) . "/default")) {
+		$url = elgg_view("document/icon/" . substr($mime,0,strpos($mime,'/')) . "/default", $vars);
+	}
+
+	if (!$url) {
+		$url = elgg_view('document/icon/default', $vars);
+	}
+
+	return $url;
 }
 
 // Make sure test_init is called on initialisation

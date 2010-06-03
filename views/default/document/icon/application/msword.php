@@ -5,6 +5,6 @@
 	} else {
 		$ext = '';
 	}
-	echo "<img src=\"{$CONFIG->wwwroot}mod/document/graphics/icons/word{$ext}.gif\" border=\"0\" />";
+	echo "{$CONFIG->wwwroot}mod/document/graphics/icons/word{$ext}.gif";
 
 ?>
