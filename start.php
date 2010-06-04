@@ -51,9 +51,10 @@ function document_init(){
 	// register type for search.
 	register_entity_type('object','document');
 
-	// expose documents for embed plugin
+	// expose documents for embed plugin + upload support
 	register_plugin_hook('embed_get_sections', 'all', 'document_embed_get_sections');
 	register_plugin_hook('embed_get_items', 'document', 'document_embed_get_items');
+	register_plugin_hook('embed_get_upload_sections', 'all', 'document_embed_get_upload_sections');
 
 	elgg_register_tag_metadata_name('simpletype');
 }
@@ -373,6 +374,22 @@ function document_get_entity_icon_url(ElggEntity $entity, $size = 'medium') {
 	}
 
 	return $url;
+}
+
+/**
+ * Register for embed upload support in documents.
+ * @param unknown_type $hook
+ * @param unknown_type $type
+ * @param unknown_type $value
+ * @param unknown_type $params
+ */
+function document_embed_get_upload_sections($hook, $type, $value, $params) {
+	$value['document'] = array(
+		'name' => elgg_echo('documents'),
+		'view' => 'document/embed_upload'
+	);
+
+	return $value;
 }
 
 // Make sure test_init is called on initialisation
