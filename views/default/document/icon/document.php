@@ -6,4 +6,4 @@ if ($vars['size'] == 'large') {
 	$ext = '';
 }
 
-echo "{$CONFIG->wwwroot}mod/document/graphics/icons/text{$ext}.gif";
+echo "{$CONFIG->wwwroot}mod/document/graphics/icons/text{$ext}.png";

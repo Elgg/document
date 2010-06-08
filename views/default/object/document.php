@@ -98,10 +98,8 @@ if (get_context() == "search") {
 			echo elgg_view('output/tags',array('value' => $tags));
 			echo "</p>";
 		}
-		
-		echo "<p class='document_icon margin_top'><a href='" . elgg_add_action_tokens_to_url($vars['url'] . "action/document/download?file_guid=$file_guid") . "'>" . elgg_view("document/icon", array("mimetype" => $mime, 'thumbnail' => $file->thumbnail, 'file_guid' => $file_guid, 'size' => 'small')) . "</a></p>";
 	?>
-		<p><a class="action_button small" href="<?php echo elgg_add_action_tokens_to_url($vars['url'] . "action/document/download?file_guid=$file_guid"); ?>"><?php echo elgg_echo("document:download"); ?></a></p>
+		<p class="margin_top"><a class="action_button download" href="<?php echo elgg_add_action_tokens_to_url($vars['url'] . "action/document/download?file_guid=$file_guid"); ?>"><?php echo elgg_view("document/icon", array("mimetype" => $mime, 'thumbnail' => $file->thumbnail, 'file_guid' => $file_guid, 'size' => 'small')) . elgg_echo("document:download"); ?></a></p>
 	</div>
 	<div class="divider"></div>
 	<?php

@@ -5,6 +5,6 @@
 	} else {
 		$ext = '';
 	}
-	echo "{$CONFIG->wwwroot}mod/document/graphics/icons/pdf{$ext}.gif";
+	echo "{$CONFIG->wwwroot}mod/document/graphics/icons/pdf{$ext}.png";
 
 ?>

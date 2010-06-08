@@ -48,7 +48,7 @@ if($page_owner == $_SESSION['user']) {
 		$select_all = '';
 	}
 	
-	echo "<a href=\"{$current_url}?filter=all\" class='contains_files $select_all'><img src=\"". $CONFIG->wwwroot . "mod/document/graphics/filter/all.png\" class='mime_icon'/></a>";
+	echo "<a href=\"{$current_url}?filter=all\" class='contains_files $select_all'><img src=\"". $CONFIG->wwwroot . "mod/document/graphics/icons/all.png\" class='mime_icon'/></a>";
 		
 	//loop through the available Document categories and display the correct filter if not looking at friends
 	//displaying friends Documents does not yet support filtering
@@ -64,7 +64,7 @@ if($page_owner == $_SESSION['user']) {
 				if($t->tag == $fc)$contains_files = 'contains_files';
 			}
 			//display		
-			echo "<a href=\"{$current_url}?filter={$fc}\" class='$contains_files $select_class'><img src=\"". $CONFIG->wwwroot . "mod/document/graphics/filter/{$fc}.png\" class='mime_icon'/></a>";
+			echo "<a href=\"{$current_url}?filter={$fc}\" class='$contains_files $select_class'><img src=\"". $CONFIG->wwwroot . "mod/document/graphics/icons/{$fc}.png\" class='mime_icon'/></a>";
 		}
 	}
 ?>
