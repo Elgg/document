@@ -27,7 +27,6 @@ echo elgg_view('input/form', array(
 $(document).ready(function() {
 	// fire off the ajax upload
 	$('#document_embed_upload').submit(function() {
-		console.log('here');
 		var options = {
 			success: function() {
 				$('.popup .content').load('<?php echo $vars['url'] . 'pg/embed/embed'; ?>?active_section=document');
