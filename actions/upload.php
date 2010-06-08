@@ -11,6 +11,7 @@ $not_uploaded = array(); //used to catch Documents which don't upload for some r
 $uploaded = array(); //used to catch Documents which do upload
 $counter = 0;
 $container_guid = (int) get_input('container_guid', 0);
+$ajax = get_input('ajax', FALSE);
 
 foreach($_FILES as $key => $uploaded_file) {
 	//check there is a Document to upload
@@ -67,8 +68,17 @@ foreach($_FILES as $key => $uploaded_file) {
 			|| $file->simpletype == 'zip') {
 			// don't save these Document types, send system error msg
 			$result = array_push($not_uploaded, $name);
+
 			$upload_disallowed = sprintf(elgg_echo("document:uploadfailed:disallowed"),$file->simpletype);
-			register_error($upload_disallowed);
+			if (!$ajax) {
+				register_error($upload_disallowed);
+			} else {
+				echo json_encode(array(
+					'status' => 'error',
+					'message' => $upload_disallowed
+				));
+				exit;
+			}
 		} else {
 			// success
 			$result = $file->save();
@@ -87,26 +97,41 @@ foreach($_FILES as $key => $uploaded_file) {
 
 // did any documents fail to upload? display appropriate system messages
 if (count($not_uploaded) == 0) {
-	system_message(elgg_echo("document:saved"));
+	if (!$ajax) {
+		system_message(elgg_echo("document:saved"));
+	} else {
+		echo json_encode(array(
+			'status' => 'success',
+			'guids' => $uploaded
+		));
+		exit;
+	}
 } else {
 	// if there are errors, let the user know
 	$error = elgg_echo("document:uploadfailed") . '<br />';
 	foreach($not_uploaded as $file_name){
 		$error .= '[' . $file_name . ']<br />';
 	}
-	register_error($error);
+	if (!$ajax) {
+		register_error($error);
+	} else {
+		echo json_encode(array(
+			'status' => 'error',
+			'message' => $error
+		));
+
+		exit;
+	}
 }
 
 // if it was a successful upload, add to river and forward the user back to their Documents
 if (count($uploaded)>0) {
 	// successful upload
 	$container_user = get_entity($container_guid);
-	if (function_exists('add_to_river'))
+	if (function_exists('add_to_river')) {
 		add_to_river('river/object/document/create','create',$_SESSION['user']->guid,$file->guid);
-
+	}
 	forward($CONFIG->wwwroot . "pg/document/" . $container_user->username); //forward to users Documents
 } else {
-	forward(get_input('forward_url', $_SERVER['HTTP_REFERER'])); //upload failed, forward to previous page
+	forward(get_input('forward_url', $_SERVER['HTTP_REFERER'])); //upload failed, forward to previous pages
 }
-
-?>

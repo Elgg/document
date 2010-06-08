@@ -12,6 +12,7 @@ $form_body .= elgg_echo('document:title') . ": " . elgg_view("input/text", array
 $form_body .= elgg_echo('document:desc') . ": " . elgg_view("input/text",array('internalname' => 'description_0'));
 $form_body .= elgg_echo('document:tags') . ": " . elgg_view("input/tags", array('internalname' => 'tags_0'));
 $form_body .= elgg_echo('access') . ": " . elgg_view('input/access', array('internalname' => 'access_id_0', 'value' => $access_id));
+$form_body .= elgg_view('input/hidden', array('internalname' => 'ajax', 'value' => TRUE));
 $form_body .= '<p>' . elgg_view('input/submit', array('value' => elgg_echo('upload'))) . '</p>';
 $form_body .= '</div>';
 
@@ -28,8 +29,14 @@ $(document).ready(function() {
 	// fire off the ajax upload
 	$('#document_embed_upload').submit(function() {
 		var options = {
-			success: function() {
-				$('.popup .content').load('<?php echo $vars['url'] . 'pg/embed/embed'; ?>?active_section=document');
+			success: function(data) {
+				var info = jQuery.parseJSON(data);
+
+				if (info.status == 'success') {
+					$('.popup .content').load('<?php echo $vars['url'] . 'pg/embed/embed'; ?>?active_section=document');
+				} else {
+					$('.popup .content').find('form').prepend('<p>' + info.message + '</p>');
+				}
 			}
 		};
 		$(this).ajaxSubmit(options);
