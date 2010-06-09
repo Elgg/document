@@ -210,7 +210,7 @@ function get_general_file_type($mimetype) {
  */
 function file_categories() {
 	global $CONFIG;
-	$file_cats = array("all", "document", "pdf", "excel", "ppt", "text", "application", "general");
+	$file_cats = array("all", "document", "msword", "pdf", "excel", "ppt", "text", "application", "general");
 	return $file_cats;
 }
 

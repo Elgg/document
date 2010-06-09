@@ -5,6 +5,6 @@
 	} else {
 		$ext = '';
 	}
-	echo "{$CONFIG->wwwroot}mod/document/graphics/icons/word{$ext}.png";
+	echo "{$CONFIG->wwwroot}mod/document/graphics/icons/msword{$ext}.png";
 
 ?>
