@@ -8,10 +8,10 @@ $access_id = get_default_access(get_loggedin_user());
 
 // recycling the upload action so some of these options are a bit weird.
 $form_body = '<p>' . elgg_view('input/file', array('internalname' => 'upload_0')) . '</p>';
-$form_body .= elgg_echo('document:title') . ": " . elgg_view("input/text", array('internalname' => 'title_0'));
-$form_body .= elgg_echo('document:desc') . ": " . elgg_view("input/text",array('internalname' => 'description_0'));
-$form_body .= elgg_echo('document:tags') . ": " . elgg_view("input/tags", array('internalname' => 'tags_0'));
-$form_body .= elgg_echo('access') . ": " . elgg_view('input/access', array('internalname' => 'access_id_0', 'value' => $access_id));
+$form_body .= '<p>' . elgg_echo('document:title') . ": " . elgg_view("input/text", array('internalname' => 'title_0')) . '</p>';
+$form_body .= '<p>' . elgg_echo('document:desc') . ": " . elgg_view("input/text",array('internalname' => 'description_0')) . '</p>';
+$form_body .= '<p>' . elgg_echo('document:tags') . ": " . elgg_view("input/tags", array('internalname' => 'tags_0')) . '</p>';
+$form_body .= '<p>' . elgg_echo('access') . ": " . elgg_view('input/access', array('internalname' => 'access_id_0', 'value' => $access_id)) . '</p>';
 $form_body .= elgg_view('input/hidden', array('internalname' => 'ajax', 'value' => TRUE));
 $form_body .= '<p>' . elgg_view('input/submit', array('value' => elgg_echo('upload'))) . '</p>';
 $form_body .= '</div>';
