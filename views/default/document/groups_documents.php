@@ -46,7 +46,8 @@ if($vars['entity']->documents_enable != 'no'){
 
 	} else {
 
-		echo "<p class='margin_top'>" . elgg_echo("document:none") . "</p>";
+		$upload_document = $vars['url'] . "pg/documents/" . page_owner_entity()->username . "/new/";
+		echo "<p class='margin_top'><a href=\"{$upload_document}\">" . elgg_echo("document:upload") . "</a></p>";
 
 	}
 
