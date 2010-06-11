@@ -54,7 +54,7 @@ if($filter && $filter != 'all'){
 $area2 .= "<div id='documents_list'>" . $get_files . "</div>";
 
 // view for plugins to extend
-$area3 .= elgg_view("documents/sidebar", array("object_type" => 'file'));
+$area3 .= elgg_view("documents/sidebar", array("object_type" => 'document'));
 
 // fetch & display latest comments on user's docs
 $comments = get_annotations(0, "object", "document", "generic_comment", "", 0, 4, 0, "desc",0,0,page_owner());
