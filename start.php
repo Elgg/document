@@ -156,7 +156,7 @@ function document_notify_message($hook, $entity_type, $returnvalue, $params){
  * @param string $mimetype The MIME type
  * @return string The overall type
  */
-function get_general_file_type($mimetype) {
+ function get_general_file_type($mimetype) {
 	switch($mimetype) {
 
 		case "application/msword":
@@ -179,25 +179,29 @@ function get_general_file_type($mimetype) {
 									break;
 	}
 
-	if (substr_count($mimetype,'text/')) {
+	if (substr_count($mimetype,'text/'))
 		return "text";
-	}
 
-	if (substr_count($mimetype,'application/vnd.openxmlformats-officedocument.')) {
+	if (substr_count($mimetype,'audio/'))
+		return "audio";
+
+	if (substr_count($mimetype,'image/'))
+		return "image";
+
+	if (substr_count($mimetype,'video/'))
+		return "video";
+
+	if (substr_count($mimetype,'application/vnd.openxmlformats-officedocument.'))
 		return "openoffice";
-	}
 
-	if (substr_count($mimetype,'application/vnd.oasis.opendocument.')) {
-		return "ppt";
-	}
+	if (substr_count($mimetype,'application/octet-stream'))
+		return "exe";
 
-	if (substr_count($mimetype,'application/octet-stream')) {
-		return "general";
-	}
+	if (substr_count($mimetype,'zip'))
+		return "zip";
 
-	if (substr_count($mimetype,'application/')) {
+	if (substr_count($mimetype,'application/'))
 		return "application";
-	}
 
 	return "general";
 
