@@ -46,7 +46,7 @@ if($vars['entity']->documents_enable != 'no'){
 
 	} else {
 
-		$upload_document = $vars['url'] . "pg/documents/" . page_owner_entity()->username . "/new/";
+		$upload_document = $vars['url'] . "pg/document/" . page_owner_entity()->username . "/new/";
 		echo "<p class='margin_top'><a href=\"{$upload_document}\">" . elgg_echo("document:upload") . "</a></p>";
 
 	}
