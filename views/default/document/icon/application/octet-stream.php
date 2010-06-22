@@ -5,6 +5,6 @@
 	} else {
 		$ext = '';
 	}
-	echo "{$CONFIG->wwwroot}mod/document/graphics/icons/openoffice{$ext}.png";
+	echo "{$CONFIG->wwwroot}mod/document/graphics/icons/application{$ext}.png";
 
 ?>
