@@ -106,8 +106,8 @@
 
 /* group docs widget */
 .group_tool_widget.documents .entity_listing_info {
-	margin-left:25px;
+	margin-left:7px;
+	width:324px;
 }
-
 
 

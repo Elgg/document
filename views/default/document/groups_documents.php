@@ -6,6 +6,7 @@ if($vars['entity']->documents_enable != 'no'){
 
 ?>
 <div class="group_tool_widget documents">
+<span class="group_widget_link"><a href="<?php echo $vars['url'] . "pg/document/" . page_owner_entity()->username; ?>"><?php echo elgg_echo('link:view:all')?></a></span>
 <h3><?php echo elgg_echo("document:group"); ?></h3>
 
 <?php
@@ -41,8 +42,6 @@ if($vars['entity']->documents_enable != 'no'){
 
 		//get a link to the users Documents
 		$users_file_url = $vars['url'] . "pg/document/" . page_owner_entity()->username;
-
-		echo "<p class='link'><a href=\"{$users_file_url}\">" . elgg_echo('document:more') . "</a></p>";
 
 	} else {
 
