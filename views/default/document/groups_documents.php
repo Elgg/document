@@ -10,17 +10,11 @@ if($vars['entity']->documents_enable != 'no'){
 <h3><?php echo elgg_echo("document:group"); ?></h3>
 
 <?php
-
-	//the number of Documents to display
-	$number = (int) $vars['entity']->num_display;
-	if (!$number)
-		$number = 6;
-
-	//$files = get_user_objects($vars['entity']->guid, "document", $number, 0);
 	$files = elgg_get_entities(array(
 		'type' => 'object',
 		'subtype' => 'document',
-		'container_guid' => $vars['entity']->getGUID()
+		'container_guid' => $vars['entity']->getGUID(),
+		'limit' => 6
 	));
 
 	//if there are some Documents, go get them
