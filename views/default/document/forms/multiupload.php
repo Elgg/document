@@ -23,7 +23,7 @@
 		$num = 5;
 
 ?>
-<form action="<?php echo $vars['url']; ?>action/<?php echo $action; ?>" enctype="multipart/form-data" method="post" class="margin_top">
+<form id="document_upload" action="<?php echo $vars['url']; ?>action/<?php echo $action; ?>" enctype="multipart/form-data" method="post" class="margin_top">
 <?php
 	echo elgg_view('input/securitytoken');
 	//if it is a group, pull out the group access view
