@@ -12,11 +12,12 @@ $string = sprintf(elgg_echo("document:river:created"),$url) . " <a href=\"{$obje
 if(($is_group instanceof ElggGroup) && (get_context() != 'groups')){
 	$string .= " " . elgg_echo('document:ingroup') . " <a href=\"{$is_group->getURL()}\">" . $is_group->name . "</a>";
 }
-$string .= " <span class='entity_subtext'>" . friendly_time($object->time_created) . "</span>";
+$string .= " <span class='entity_subtext'>" . friendly_time($object->time_created);
 if (isloggedin()){
 	$string .= "<a class='river_comment_form_button link'>Comment</a>";
 	$string .= elgg_view('likes/forms/link', array('entity' => $object));
 }
+$string .= "</span>";
 
 //show the Document type icon with title
 $filetype = get_general_file_type($object->mimetype);
