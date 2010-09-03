@@ -25,8 +25,6 @@ class DocumentPluginDoc extends ElggFile{
 function document_init(){
 	global $CONFIG;
 
-	$page_owner = page_owner_entity();
-
 	add_menu(elgg_echo('documents'), $CONFIG->wwwroot . 'mod/document/all.php');
 	elgg_extend_view('css', 'document/css');
 
